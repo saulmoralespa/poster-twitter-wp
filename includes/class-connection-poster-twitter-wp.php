@@ -43,17 +43,13 @@ class Connection_Poster_Twitter_WP_PTWP
     public function saveTokens($id)
     {
         if(isset($_REQUEST['oauth_token']) && isset($_REQUEST['oauth_verifier'])){
-
             $data = $this->_DataTable();
-
+            $oauth_verifier = sanitize_text_field($_REQUEST['oauth_verifier']);
             $oauth_token = get_post_meta($id, 'poster-twitter-wp-ptwp-oauth-token', true);
             $oauth_token_secret = get_post_meta($id, 'poster-twitter-wp-ptwp-oauth-token-secret', true);
             $connection = new TwitterOAuth($data->consumer_key, $data->consumer_key_secret, $oauth_token, $oauth_token_secret);
-            $access_token = $connection->oauth("oauth/access_token", array("oauth_verifier" => $_REQUEST['oauth_verifier']));
-
+            $access_token = $connection->oauth("oauth/access_token", array("oauth_verifier" => $oauth_verifier));
             update_post_meta($id, 'poster-twitter-wp-ptwp-token-user', $access_token);
-
-
         }
     }
 

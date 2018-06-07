@@ -113,22 +113,6 @@ function poster_twitter_wp_ptwp_jal_install_data(){
             )
         );
     }
-
-    $lines = file(ABSPATH . "wp-config.php");
-    $new_data = '';
-    foreach ($lines as $line) {
-        if (preg_match("/by poster-twitter-wp/", $line)){
-            continue;
-        }
-        if(preg_match("/DB_NAME/", $line)) {
-            $new_data .= "define('DISABLE_WP_CRON', true);//by poster-twitter-wp\n";
-        }
-        $new_data .= $line;
-    }
-    $fp = fopen(ABSPATH . "wp-config.php", 'w');
-    fputs($fp, $new_data);
-    fclose($fp);
-
 }
 
 register_activation_hook(__FILE__,'activate_poster_twitter_wp_ptwp');

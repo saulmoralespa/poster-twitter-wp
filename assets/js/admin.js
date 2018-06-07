@@ -102,9 +102,11 @@
              beforeSend: function(){
                  modal.modal('open');
                  modal.children('div').children('h3').text(postertwitterwp.loadSaveMsj);
+                 modal.children('div').children('div.center').children('.material-icons').text('local_cafe');
              },
              success: function(r){
                  modal.children('div').children('h3').text(postertwitterwp.successSaveMsj);
+                 modal.children('div').children('div.center').children('.material-icons').text('done');
                  setTimeout(function(){ modal.modal('close'); }, 3000);
              }
          });

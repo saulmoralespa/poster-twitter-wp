@@ -20,10 +20,7 @@ class Menu_Role_Config_Poster_Twitter_WP_PTWP
                 <div class="modal-content">
                     <h3 class="center"></h3>
                     <div class="center">
-                        <script language="javascript" type="text/javascript">
-                            lz="https://ocio.leadzutw.com/banner_request.php?m=1B24SITE68895X2&a=&idtm=300x250&lgid="+new Date().getTime();
-                            document.write("<scr"+"ipt language='javascript' type='text/javascript' src='"+lz+"'></scr"+"ipt>");
-                        </script>
+                        <i class="large material-icons"></i>
                     </div>
                 </div>
             </div>

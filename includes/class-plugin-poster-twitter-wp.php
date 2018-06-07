@@ -143,14 +143,17 @@ class Plugin_Poster_Twitter_WP_PTWP
 
             $id = $_POST['poster-twitter-wp-id-ptwp'];
 
+            $consumer_key = sanitize_text_field(trim($_POST['poster-twitter-wp-consumer-key-ptwp']));
+            $consumer_secret = sanitize_text_field(trim($_POST['poster-twitter-wp-consumer-secret-ptwp']));
+
             global $wpdb;
             $table_name = $wpdb->prefix . 'postertwitterwp';
 
             $wpdb->update(
                 $table_name,
                 array(
-                    'consumer_key' => trim($_POST['poster-twitter-wp-consumer-key-ptwp']),
-                    'consumer_key_secret' => trim($_POST['poster-twitter-wp-consumer-secret-ptwp']),
+                    'consumer_key' => $consumer_key,
+                    'consumer_key_secret' => $consumer_secret,
                     'is_data' =>  true
 
                 ),
@@ -161,19 +164,18 @@ class Plugin_Poster_Twitter_WP_PTWP
         }
 
         if (isset($_POST['login'])){
-            $id = $_POST['iduser'];
+            $id = (int)$_POST['iduser'];
             echo poster_twitter_wp_ptwp()->conn->requestToken($id, true);
         }
 
         if (isset($_POST['postertwitterwpmessage'])){
-            $id = $_POST['iduser'];
-            sleep(30);
-            update_post_meta($id, 'poster-twitter-wp-ptwp-tweet', $_POST['postertwitterwpmessage']);
+            $id = (int)$_POST['iduser'];
+            $message = sanitize_text_field($_POST['postertwitterwpmessage']);
+            update_post_meta($id, 'poster-twitter-wp-ptwp-tweet', $message);
         }
 
         if(isset($_POST['reset'])){
-            $id = $_POST['iduser'];
-            sleep(30);
+            $id = (int)$_POST['iduser'];
             update_post_meta($id, 'poster-twitter-wp-ptwp-token-user', '');
             update_post_meta($id, 'poster-twitter-wp-ptwp-tweet', '');
         }
