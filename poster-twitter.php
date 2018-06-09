@@ -21,7 +21,7 @@ add_action('plugins_loaded','poster_twitter_wp_ptwp_init',0);
 
 function poster_twitter_wp_ptwp_init(){
 
-    load_plugin_textdomain('poster-twitter-wp', FALSE, dirname(plugin_basename(__FILE__)) . '/languages');
+    load_plugin_textdomain('poster-twitter', FALSE, dirname(plugin_basename(__FILE__)) . '/languages');
 
     if (!requeriments_poster_twitter_wp_ptwp()){
         return;
@@ -49,7 +49,7 @@ function requeriments_poster_twitter_wp_ptwp()
 {
     if ( version_compare( '5.6.0', PHP_VERSION, '>' ) ) {
         if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {
-            $php = __( 'Poster twitter WP: Requiere php versión 5.6.0 o superior.', 'poster-twitter-wp' );
+            $php = __( 'Poster twitter WP: Requiere php versión 5.6.0 o superior.', 'poster-twitter' );
             do_action('notices_poster_twitter_wp_ptwp', $php);
         }
         return false;
@@ -61,7 +61,7 @@ function poster_twitter_wp_ptwp(){
     static $plugin;
     if (!isset($plugin)){
         require_once('includes/class-plugin-poster-twitter-wp.php');
-        $plugin = new Plugin_Poster_Twitter_WP_PTWP(__FILE__, POSTER_TWITTER_WP_PTWP_VERSION, 'Poster twitter wp');
+        $plugin = new Plugin_Poster_Twitter_WP_PTWP(__FILE__, POSTER_TWITTER_WP_PTWP_VERSION, 'poster twitter');
     }
 
     return $plugin;
